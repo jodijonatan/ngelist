@@ -58,7 +58,7 @@ class DashboardController
 
       if ($this->model->tambahTransaksi($data)) {
         // Redirect setelah sukses ke halaman riwayat
-        header('Location: ' . BASE_URL . 'dashboard/riwayat');
+        header('Location: ' . BASE_URL . 'riwayat');
         exit;
       } else {
         echo "Gagal menambahkan transaksi.";
@@ -75,10 +75,10 @@ class DashboardController
   {
     $id = $params[0] ?? null;
     if ($id && $this->model->hapusTransaksi($id, $this->user_id)) {
-      header('Location: ' . BASE_URL . 'dashboard/riwayat'); // Redirect ke riwayat
+      header('Location: ' . BASE_URL . 'riwayat'); // Redirect ke riwayat
       exit;
     } else {
-      header('Location: ' . BASE_URL . 'dashboard/riwayat');
+      header('Location: ' . BASE_URL . 'riwayat');
       exit;
     }
   }

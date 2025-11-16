@@ -32,7 +32,7 @@ function route()
 
   // 5. Tentukan Controller dan Method
   // Jika segmen pertama kosong, gunakan 'dashboard'
-  $controller_name = array_shift($segments) ?: 'dashboard';
+  $controller_name = 'dashboard';
   // Jika segmen kedua kosong, gunakan 'index'
   $method_name = array_shift($segments) ?: 'index';
   // Sisa segmen dianggap parameter
@@ -56,7 +56,7 @@ function route()
       echo "404 - Method Not Found: " . $method_name;
     }
   } else {
-    // Jika controller yang diminta tidak ada, arahkan ke dashboard/index
+    // Jika controller yang diminta tidak ada, arahkan ke index
     // Ini adalah fallback untuk halaman utama
     $controller = new DashboardController;
     $controller->index();

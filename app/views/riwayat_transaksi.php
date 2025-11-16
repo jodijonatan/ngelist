@@ -75,7 +75,7 @@
                 </button>
 
 
-                <a href="<?php echo BASE_URL; ?>dashboard/hapus/<?php echo $t['id']; ?>"
+                <a href="<?php echo BASE_URL; ?>hapus/<?php echo $t['id']; ?>"
                   onclick="return confirm('Yakin ingin menghapus transaksi ini? Tindakan ini tidak dapat dibatalkan.')"
                   class="text-red-500 hover:text-red-700 transition duration-150 ease-in-out p-2 rounded-full hover:bg-red-50"
                   title="Hapus Transaksi">

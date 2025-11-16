@@ -27,7 +27,7 @@
           </a>
         </li>
         <li class="mb-2">
-          <a href="<?php echo BASE_URL; ?>dashboard/riwayat"
+          <a href="<?php echo BASE_URL; ?>riwayat"
             class="flex items-center p-3 rounded-lg hover:bg-indigo-700 transition duration-150 
                        <?php echo (isset($page_title) && $page_title == 'Riwayat Transaksi') ? 'bg-indigo-600' : ''; ?>">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@
           </a>
         </li>
         <li class="mb-2">
-          <a href="<?php echo BASE_URL; ?>dashboard/tambah"
+          <a href="<?php echo BASE_URL; ?>tambah"
             class="flex items-center p-3 rounded-lg hover:bg-indigo-700 transition duration-150 
                        <?php echo (isset($page_title) && $page_title == 'Tambah Transaksi Baru') ? 'bg-indigo-600' : ''; ?>">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

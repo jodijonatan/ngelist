@@ -174,7 +174,7 @@ if ($total_semua > 0) {
 <div class="bg-white shadow-lg rounded-xl p-6">
   <div class="flex justify-between items-center mb-4">
     <h2 class="text-xl font-semibold text-gray-800">Riwayat Transaksi Terakhir</h2>
-    <a href="<?php echo BASE_URL; ?>dashboard/riwayat" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out flex items-center">
+    <a href="<?php echo BASE_URL; ?>riwayat" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out flex items-center">
       Lihat Semua Riwayat
       <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -215,7 +215,7 @@ if ($total_semua > 0) {
                 Rp <?php echo number_format($t['jumlah'], 0, ',', '.'); ?>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="<?php echo BASE_URL; ?>dashboard/hapus/<?php echo $t['id']; ?>"
+                <a href="<?php echo BASE_URL; ?>hapus/<?php echo $t['id']; ?>"
                   onclick="return confirm('Yakin ingin menghapus transaksi ini?')"
                   class="text-red-600 hover:text-red-900 transition duration-150 ease-in-out">
                   Hapus

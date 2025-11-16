@@ -9,7 +9,7 @@
     </h2>
   </div>
 
-  <form action="<?php echo BASE_URL; ?>dashboard/tambah" method="POST" class="grid grid-cols-1 md:grid-cols-6 gap-6 items-end">
+  <form action="<?php echo BASE_URL; ?>tambah" method="POST" class="grid grid-cols-1 md:grid-cols-6 gap-6 items-end">
 
     <div class="md:col-span-1">
       <label for="jenis" class="block text-sm font-semibold text-gray-700 mb-1">Jenis</label>
