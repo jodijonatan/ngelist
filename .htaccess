@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    # Aktifkan Rewrite Engine
+    RewriteEngine On
+
+    # Base URI (Ganti /ngelist/ jika nama folder Anda berbeda)
+    # Ini penting agar router PHP tahu di mana aplikasi dimulai
+    RewriteBase /ngelist/
+
+    # Abaikan file/folder yang benar-benar ada (agar aset seperti CSS/JS bisa dimuat)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Arahkan semua permintaan yang tersisa ke index.php
+    # Semua URL seperti dashboard/tambah atau dashboard/riwayat akan dikirim ke index.php
+    RewriteRule ^(.*)$ index.php [L]
+</IfModule>

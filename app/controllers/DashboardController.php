@@ -1,68 +1,90 @@
 <?php
-require_once __DIR__ . '/../models/TransaksiModel.php';
+// Menggunakan APP_ROOT untuk path yang konsisten
+require_once APP_ROOT . 'models/TransaksiModel.php';
 
 class DashboardController
 {
   private $model;
-  private $user_id = 1; // Asumsi ID pengguna yang sedang login
+  private $user_id = 1;
 
   public function __construct()
   {
+    // Fallback untuk APP_ROOT
+    if (!defined('APP_ROOT')) {
+      define('APP_ROOT', __DIR__ . '/../');
+    }
     $this->model = new TransaksiModel();
   }
 
-  public function index()
+  /**
+   * Menampilkan halaman ringkasan saldo utama (Dashboard).
+   */
+  public function index($params = [])
   {
-    $data['page_title'] = 'Dashboard Utama';
+    $data['page_title'] = 'Dashboard Utama'; // Judul dinamis
     $data['ringkasan'] = $this->model->getRingkasan($this->user_id);
-    $data['transaksi'] = $this->model->getAllTransaksi($this->user_id);
 
-    $this->view('dashboard', $data);
+    $this->view('dashboard', $data); // Memuat View baru
   }
 
-  public function tambah()
+  /**
+   * Menampilkan halaman Riwayat Transaksi.
+   */
+  public function riwayat($params = [])
+  {
+    $data['page_title'] = 'Riwayat Transaksi';
+    $data['transaksi'] = $this->model->getAllTransaksi($this->user_id);
+
+    $this->view('riwayat_transaksi', $data); // Memuat View baru
+  }
+
+  /**
+   * Menampilkan form Tambah Transaksi (GET) atau Menyimpan data (POST).
+   */
+  public function tambah($params = [])
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Logika Penyimpanan Data (Sama seperti sebelumnya)
       $data = [
         'user_id'   => $this->user_id,
-        'jenis'     => $_POST['jenis'],
-        'jumlah'    => $_POST['jumlah'],
-        'deskripsi' => $_POST['deskripsi'],
-        'tanggal'   => $_POST['tanggal']
+        'jenis'     => $_POST['jenis'] ?? '',
+        'jumlah'    => $_POST['jumlah'] ?? 0,
+        'deskripsi' => $_POST['deskripsi'] ?? '',
+        'tanggal'   => $_POST['tanggal'] ?? date('Y-m-d')
       ];
 
       if ($this->model->tambahTransaksi($data)) {
-        header('Location: ' . BASE_URL);
+        // Redirect setelah sukses ke halaman riwayat
+        header('Location: ' . BASE_URL . 'dashboard/riwayat');
         exit;
       } else {
-        // Tampilkan pesan error
         echo "Gagal menambahkan transaksi.";
       }
     } else {
-      // Jika request GET, tampilkan form (kita bisa gabungkan form di dashboard)
-      // $this->view('transaksi_form'); 
+      // Tampilkan form kosong untuk input
+      $data['page_title'] = 'Tambah Transaksi Baru';
+      $this->view('transaksi_form', $data); // Memuat View form
     }
   }
 
-  public function hapus($params)
+  // Method hapus dan view helper (SAMA SEPERTI SEBELUMNYA, PASTIKAN MENGGUNAKAN APP_ROOT)
+  public function hapus($params = [])
   {
     $id = $params[0] ?? null;
     if ($id && $this->model->hapusTransaksi($id, $this->user_id)) {
-      header('Location: ' . BASE_URL);
+      header('Location: ' . BASE_URL . 'dashboard/riwayat'); // Redirect ke riwayat
       exit;
     } else {
-      header('Location: ' . BASE_URL); // Kembali ke dashboard jika gagal/ID tidak ada
+      header('Location: ' . BASE_URL . 'dashboard/riwayat');
       exit;
     }
   }
 
-  // Fungsi helper untuk memuat View
   private function view($view, $data = [])
   {
-    // Membuat variabel data bisa diakses langsung di view
     extract($data);
-    require_once __DIR__ . '/../views/includes/header.php';
-    require_once __DIR__ . '/../views/' . $view . '.php';
-    require_once __DIR__ . '/../views/includes/footer.php';
+    require_once APP_ROOT . 'views/includes/header.php';
+    require_once APP_ROOT . 'views/' . $view . '.php';
+    require_once APP_ROOT . 'views/includes/footer.php';
   }
 }

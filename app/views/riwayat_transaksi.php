@@ -1,25 +1,5 @@
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-  <div class="bg-white shadow-lg rounded-lg p-6 border-l-4 border-blue-500">
-    <h2 class="text-lg font-semibold text-gray-500">Saldo Akhir</h2>
-    <p class="text-3xl font-bold text-gray-900 mt-1">
-      Rp <?php echo number_format($ringkasan['saldo_akhir'] ?? 0, 0, ',', '.'); ?>
-    </p>
-  </div>
-  <div class="bg-white shadow-lg rounded-lg p-6 border-l-4 border-green-500">
-    <h2 class="text-lg font-semibold text-gray-500">Total Pemasukan</h2>
-    <p class="text-3xl font-bold text-green-600 mt-1">
-      Rp <?php echo number_format($ringkasan['total_pemasukan'] ?? 0, 0, ',', '.'); ?>
-    </p>
-  </div>
-  <div class="bg-white shadow-lg rounded-lg p-6 border-l-4 border-red-500">
-    <h2 class="text-lg font-semibold text-gray-500">Total Pengeluaran</h2>
-    <p class="text-3xl font-bold text-red-600 mt-1">
-      Rp <?php echo number_format($ringkasan['total_pengeluaran'] ?? 0, 0, ',', '.'); ?>
-    </p>
-  </div>
-</div>
 <div class="bg-white shadow-lg rounded-lg p-6">
-  <h2 class="text-xl font-semibold mb-4 text-gray-800">Riwayat Transaksi Terakhir</h2>
+  <h2 class="text-xl font-semibold mb-4 text-gray-800">Daftar Semua Transaksi</h2>
 
   <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
