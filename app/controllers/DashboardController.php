@@ -17,19 +17,22 @@ class DashboardController
   }
 
   /**
-   * Menampilkan halaman ringkasan saldo utama (Dashboard).
-   */
+ * Menampilkan halaman ringkasan saldo utama (Dashboard).
+ */
   public function index($params = [])
   {
     $data['page_title'] = 'Dashboard Utama'; // Judul dinamis
     $data['ringkasan'] = $this->model->getRingkasan($this->user_id);
 
-    $this->view('dashboard', $data); // Memuat View baru
+    // ✨ Ini memastikan data tren tersedia di dashboard.php
+    $data['tren_bulanan'] = $this->model->getTrenBulanan($this->user_id, 6);
+
+    $this->view('dashboard', $data); // Memuat View dashboard.php
   }
 
   /**
-   * Menampilkan halaman Riwayat Transaksi.
-   */
+ * Menampilkan halaman Riwayat Transaksi.
+ */
   public function riwayat($params = [])
   {
     $data['page_title'] = 'Riwayat Transaksi';
@@ -39,18 +42,18 @@ class DashboardController
   }
 
   /**
-   * Menampilkan form Tambah Transaksi (GET) atau Menyimpan data (POST).
-   */
+ * Menampilkan form Tambah Transaksi (GET) atau Menyimpan data (POST).
+ */
   public function tambah($params = [])
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Logika Penyimpanan Data (Sama seperti sebelumnya)
       $data = [
-        'user_id'   => $this->user_id,
-        'jenis'     => $_POST['jenis'] ?? '',
-        'jumlah'    => $_POST['jumlah'] ?? 0,
+        'user_id' => $this->user_id,
+        'jenis' => $_POST['jenis'] ?? '',
+        'jumlah' => $_POST['jumlah'] ?? 0,
         'deskripsi' => $_POST['deskripsi'] ?? '',
-        'tanggal'   => $_POST['tanggal'] ?? date('Y-m-d')
+        'tanggal' => $_POST['tanggal'] ?? date('Y-m-d')
       ];
 
       if ($this->model->tambahTransaksi($data)) {

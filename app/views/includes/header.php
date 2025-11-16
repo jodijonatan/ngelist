@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UangKu - <?php echo $page_title ?? 'Dashboard'; ?></title>
+  <title>Ngelist - <?php echo $page_title ?? 'Dashboard'; ?></title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -12,7 +12,7 @@
 
   <aside class="w-64 bg-gray-800 text-white flex flex-col p-4 shadow-xl shrink-0">
     <div class="text-2xl font-bold mb-8 text-indigo-400">
-      💸 UangKu App
+      💸 Ngelist App
     </div>
     <nav class="flex-grow">
       <ul>
@@ -49,7 +49,7 @@
       </ul>
     </nav>
     <div class="mt-auto pt-4 border-t border-gray-700 text-sm text-gray-400">
-      Login sebagai: **Admin**
+      Login sebagai: <span class="font-bold">Admin</span>
     </div>
   </aside>
   <div class="flex-1 flex flex-col overflow-hidden">
