@@ -12,7 +12,7 @@
 
   <aside class="w-64 bg-gray-800 text-white flex flex-col p-4 shadow-xl shrink-0">
     <div class="text-2xl font-bold mb-8 text-indigo-400">
-      💸 Ngelist App
+      Ngelist
     </div>
     <nav class="flex-grow">
       <ul>

@@ -122,18 +122,24 @@ if ($total_semua > 0) {
   <!-- Kolom Kanan: Distribusi Saldo -->
   <div class="bg-white shadow-lg rounded-xl p-6">
     <h2 class="text-xl font-semibold mb-4 text-gray-800">Distribusi Pemasukan vs Pengeluaran</h2>
+
+    <?php
+    $persen_pemasukan = $persen_pemasukan ?? 0;
+    $persen_pengeluaran = 100 - $persen_pemasukan;
+    ?>
+
     <div class="flex justify-center items-center h-48 relative">
-      <?php
-      // Menghitung derajat untuk pseudo-donut chart (jika total > 0)
-      $pemasukan_derajat = $persen_pemasukan * 3.6; // 360 derajat / 100
-      ?>
-      <div class="w-36 h-36 rounded-full bg-gray-200 flex items-center justify-center relative">
+      <!-- Donut Chart -->
+      <div
+        class="w-36 h-36 rounded-full flex items-center justify-center relative"
+        style="background: conic-gradient(
+                #4ade80 <?php echo $persen_pemasukan; ?>%, 
+                #f87171 <?php echo $persen_pemasukan; ?>%
+            );">
         <div class="absolute inset-4 bg-white rounded-full flex flex-col items-center justify-center">
           <span class="text-xl font-bold text-gray-800"><?php echo $persen_pemasukan; ?>%</span>
           <span class="text-sm text-gray-500">Pemasukan</span>
         </div>
-        <!-- Styling sederhana untuk ring distribusi -->
-        <div class="absolute inset-0 rounded-full border-8 border-r-green-400 border-t-green-400 border-b-red-400 border-l-red-400 transform" style="clip: rect(0, 18px, 36px, 0); transform: rotate(<?php echo $pemasukan_derajat; ?>deg);"></div>
       </div>
     </div>
 
@@ -147,6 +153,7 @@ if ($total_semua > 0) {
           Rp <?php echo number_format($ringkasan['total_pemasukan'] ?? 0, 0, ',', '.'); ?>
         </span>
       </div>
+
       <div class="flex justify-between items-center text-sm">
         <div class="flex items-center">
           <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
@@ -158,6 +165,7 @@ if ($total_semua > 0) {
       </div>
     </div>
   </div>
+
 </div>
 
 <hr class="mb-8">
